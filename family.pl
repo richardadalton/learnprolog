@@ -1,11 +1,15 @@
 man(tom).
 man(pete).
+man(john).
 
 woman(mary).
 woman(anne).
+woman(marie).
 
 parent(mary, tom).
 parent(tom, pete).
+parent(tom, marie).
+parent(tom, john).
 parent(anne, pete).
 
 grandparent(X, Y) :- parent(X, Z), parent(Z, Y).
@@ -19,5 +23,8 @@ daughter(X, Y) :- parent(Y, X), woman(Y).
 grandfather(X, Y) :- father(X, Z), parent(Z, Y).
 grandmother(X, Y) :- mother(X, Z), parent(Z, Y).
 
-grandson(X, Y) :- son(X, Z), parent(Y, Z).
-granddaughter(X, Y) :- daughter(X, Z), parent(Y, Z).
+grandson(X, Y) :- grandparent(Y, X), man(X).
+granddaughter(X, Y) :- grandparent(Y, X), woman(X).
+
+ancestor(X, Y) :- parent(X, Y).
+ancestor(X, Y) :- parent(X, Z), ancestor(Z, Y).
