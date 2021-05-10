@@ -1,10 +1,7 @@
+head(X, [X|_]).
+
 member(X, [X|_]).
 member(X, [_|T]) :- member(X, T).
-
-
-alt([]).
-alt([a, b|T]) :- alt(T).
-
 
 maxinlist([X], X).
 maxinlist([X|Xs], M) :- maxinlist(Xs, M), M >= X.
